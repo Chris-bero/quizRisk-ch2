@@ -1,102 +1,364 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 2: Insurance and Risk - Premium Academic Quizzes</title>
+    <title>Chapters 2-3: Insurance and Risk - Premium Academic Quizzes</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #F4F7F6; --surface: #FFFFFF; --primary: #0F172A; --secondary: #334155;
-            --accent: #C5A059; --accent-light: rgba(197, 160, 89, 0.1); --text-main: #1E293B;
-            --text-muted: #64748B; --success: #059669; --success-bg: rgba(5, 150, 105, 0.1);
-            --error: #DC2626; --error-bg: rgba(220, 38, 38, 0.1); --border: #E2E8F0;
+            --bg: #F4F7F6;
+            --surface: #FFFFFF;
+            --primary: #0F172A;      
+            --secondary: #334155;    
+            --accent: #C5A059;       
+            --accent-light: rgba(197, 160, 89, 0.1);
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --success: #059669;
+            --success-bg: rgba(5, 150, 105, 0.1);
+            --error: #DC2626;
+            --error-bg: rgba(220, 38, 38, 0.1);
+            --border: #E2E8F0;
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
             --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            --radius: 16px; --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; font-family: 'Inter', sans-serif; transition: var(--transition); }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
         body[dir="rtl"] { font-family: 'Cairo', sans-serif; }
-        header { background: linear-gradient(135deg, var(--primary) 0%, #1E293B 100%); color: white; padding: 2.5rem 0; position: relative; overflow: hidden; box-shadow: var(--shadow-lg); }
-        header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, transparent 70%); border-radius: 50%; }
-        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+        /* --- Header --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1E293B 100%);
+            color: white;
+            padding: 2.5rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
         .brand { display: flex; flex-direction: column; text-align: center; }
-        .brand h1 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+
+        .brand h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
         body[dir="rtl"] .brand h1 { font-family: 'Cairo', sans-serif; font-size: 1.8rem; }
-        .brand span { color: var(--accent); font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
-        .fab-translate { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background: linear-gradient(135deg, var(--primary) 0%, #1E293B 100%); color: var(--accent); border: 2px solid var(--accent); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 15px rgba(197, 160, 89, 0.2); transition: var(--transition); overflow: hidden; }
-        [dir="rtl"] .fab-translate { right: auto; left: 30px; }
-        .fab-translate:hover { transform: scale(1.1); box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 25px rgba(197, 160, 89, 0.4); background: var(--accent); color: var(--primary); }
-        .fab-icon { font-size: 1.5rem; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .fab-translate.animate .fab-icon { transform: rotate(360deg) scale(1.2); }
-        .fab-tooltip { position: absolute; right: 75px; background: var(--primary); color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; transform: translateX(10px); }
-        [dir="rtl"] .fab-tooltip { right: auto; left: 75px; transform: translateX(-10px); }
-        .fab-translate:hover .fab-tooltip { opacity: 1; transform: translateX(0); }
+
+        .brand span {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- Floating Translate Button (FAB) --- */
+        .fab-translate {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary) 0%, #1E293B 100%);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2), 0 0 15px rgba(197, 160, 89, 0.2);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        [dir="rtl"] .fab-translate {
+            right: auto;
+            left: 30px;
+        }
+
+        .fab-translate:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 25px rgba(197, 160, 89, 0.4);
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .fab-icon {
+            font-size: 1.5rem;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .fab-translate.animate .fab-icon {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        .fab-tooltip {
+            position: absolute;
+            right: 75px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateX(10px);
+        }
+
+        [dir="rtl"] .fab-tooltip {
+            right: auto;
+            left: 75px;
+            transform: translateX(-10px);
+        }
+
+        .fab-translate:hover .fab-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* --- Tabs --- */
         .tabs-wrapper { margin-top: -30px; margin-bottom: 40px; position: relative; z-index: 2; }
         .tabs { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .tab-btn { padding: 14px 40px; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: var(--transition); box-shadow: var(--shadow-sm); }
+
+        .tab-btn {
+            padding: 14px 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
         .tab-btn:hover { color: var(--primary); border-color: var(--accent); }
-        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2); }
-        .quiz-container { background: var(--surface); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 60px; border: 1px solid var(--border); animation: fadeIn 0.5s ease-out; }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+        }
+
+        /* --- Quiz Container --- */
+        .quiz-container {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 60px;
+            border: 1px solid var(--border);
+            animation: fadeIn 0.5s ease-out;
+        }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .quiz-title { text-align: center; color: var(--primary); margin-bottom: 40px; font-family: 'Playfair Display', serif; font-size: 1.6rem; position: relative; padding-bottom: 15px; }
+
+        .quiz-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
         body[dir="rtl"] .quiz-title { font-family: 'Cairo', sans-serif; }
-        .quiz-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--accent); border-radius: 2px; }
-        .question-block { margin-bottom: 32px; padding: 28px; background: #FAFCFC; border-radius: 12px; border: 1px solid var(--border); transition: var(--transition); }
+
+        .quiz-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* --- Question Block --- */
+        .question-block {
+            margin-bottom: 32px;
+            padding: 28px;
+            background: #FAFCFC;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
         .question-block:hover { border-color: #CBD5E1; box-shadow: var(--shadow-sm); }
-        .question-number { display: inline-flex; align-items: center; justify-content: center; background: var(--primary); color: white; width: 28px; height: 28px; border-radius: 50%; font-size: 0.85rem; font-weight: bold; margin-right: 12px; flex-shrink: 0; }
+
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
         body[dir="rtl"] .question-number { margin-right: 0; margin-left: 12px; }
-        .question-text { font-weight: 600; font-size: 1.05rem; color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- Options --- */
         .options { display: flex; flex-direction: column; gap: 12px; }
-        .option-card { display: flex; align-items: center; padding: 16px 20px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; transition: var(--transition); }
+
+        .option-card {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
         .option-card:hover { border-color: var(--accent); background: var(--accent-light); transform: translateX(4px); }
         body[dir="rtl"] .option-card:hover { transform: translateX(-4px); }
+
         .option-card.selected { border-color: var(--accent); background: var(--accent-light); box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15); }
         .option-card input[type="radio"] { display: none; }
-        .custom-radio { width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 50%; margin-right: 15px; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; }
+
+        .custom-radio {
+            width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 50%;
+            margin-right: 15px; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); flex-shrink: 0;
+        }
+
         body[dir="rtl"] .custom-radio { margin-right: 0; margin-left: 15px; }
         .option-card.selected .custom-radio { border-color: var(--accent); background: var(--accent); }
         .option-card.selected .custom-radio::after { content: ''; width: 8px; height: 8px; background: white; border-radius: 50%; }
         .option-text { font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
+
         .option-card.correct { border-color: var(--success) !important; background: var(--success-bg) !important; }
         .option-card.correct .custom-radio { border-color: var(--success); background: var(--success); }
         .option-card.incorrect { border-color: var(--error) !important; background: var(--error-bg) !important; }
         .option-card.incorrect .custom-radio { border-color: var(--error); background: var(--error); }
-        .explanation-box { margin-top: 20px; padding: 18px 20px; background: #FFFBF0; border-left: 4px solid var(--accent); border-radius: 8px; display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+
+        /* --- Explanation Box --- */
+        .explanation-box {
+            margin-top: 20px; padding: 18px 20px; background: #FFFBF0;
+            border-left: 4px solid var(--accent); border-radius: 8px;
+            display: none; opacity: 0; transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
         .explanation-box.show { display: block; opacity: 1; transform: translateY(0); }
         [dir="rtl"] .explanation-box { border-left: none; border-right: 4px solid var(--accent); }
+
         .explanation-header { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--primary); margin-bottom: 8px; font-size: 0.95rem; }
         .explanation-icon { color: var(--accent); font-size: 1.1rem; }
         .explanation-text { color: var(--secondary); font-size: 0.92rem; line-height: 1.7; }
-        .submit-btn { display: block; width: 100%; padding: 18px; background: linear-gradient(135deg, var(--primary) 0%, #1E293B 100%); color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 30px; transition: var(--transition); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2); }
+
+        /* --- Submit & Result --- */
+        .submit-btn {
+            display: block; width: 100%; padding: 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, #1E293B 100%);
+            color: white; border: none; border-radius: 12px; font-size: 1.1rem;
+            font-weight: 600; cursor: pointer; margin-top: 30px; transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+        }
+
         .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(15, 23, 42, 0.3); }
-        .result-box { margin-top: 30px; padding: 30px; border-radius: 12px; text-align: center; display: none; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        .result-box {
+            margin-top: 30px; padding: 30px; border-radius: 12px; text-align: center;
+            display: none; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
         @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
         .result-box.correct { background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(5, 150, 105, 0.1)); border: 1px solid var(--success); }
         .result-box.incorrect { background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(220, 38, 38, 0.1)); border: 1px solid var(--error); }
         .score-display { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
         .result-box.correct .score-display { color: var(--success); }
         .result-box.incorrect .score-display { color: var(--error); }
         .result-msg { font-size: 1.1rem; color: var(--text-muted); font-weight: 500; }
+
         footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; }
+
         @media (max-width: 768px) {
-            .brand h1 { font-size: 1.5rem; } .quiz-container { padding: 24px; } .question-block { padding: 20px; }
-            .fab-translate { width: 50px; height: 50px; bottom: 20px; right: 20px; } [dir="rtl"] .fab-translate { left: 20px; right: auto; }
+            .brand h1 { font-size: 1.5rem; }
+            .quiz-container { padding: 24px; }
+            .question-block { padding: 20px; }
+            .fab-translate { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+            [dir="rtl"] .fab-translate { left: 20px; right: auto; }
         }
     </style>
 </head>
+
 <body>
+
 <header>
     <div class="container">
         <div class="brand">
             <h1 id="main-title">Insurance and Risk</h1>
-            <span id="sub-title">Chapter 2: Principles & Applications</span>
+            <span id="sub-title">Chapters 2-3: Principles & Applications</span>
         </div>
     </div>
 </header>
 
+<!-- Floating Translate Button -->
 <button class="fab-translate" id="fab-translate" onclick="toggleLanguage(this)">
     <span class="fab-icon">🌐</span>
     <span class="fab-tooltip" id="fab-tooltip">Translate to العربية</span>
@@ -109,6 +371,7 @@
             <button class="tab-btn" onclick="switchQuiz(1)" id="tab-1">Quiz 2</button>
         </div>
     </div>
+
     <div class="quiz-container">
         <h2 class="quiz-title" id="quiz-title"></h2>
         <form id="quiz-form"></form>
@@ -121,28 +384,28 @@
 </div>
 
 <footer>
-    <p id="footer-text">Based on "Principles of Risk Management and Insurance" - Chapter 2</p>
+    <p id="footer-text">Based on "Risk Management and Insurance" - </p>
 </footer>
 
 <script>
     let currentLang = 'en';
     let currentQuizIndex = 0;
-    let userAnswers = {}; 
-    let submittedQuizzes = {}; 
+    const answers = {};   /* EBRA — يحفظ الاختيارات */
+    const graded = {};    /* EBRA — يتذكر ما صُحّح */
 
     const translations = {
         en: {
-            mainTitle: "Insurance and Risk", subTitle: "Chapter 2: Principles & Applications",
+            mainTitle: "Insurance and Risk", subTitle: "Chapters 2-3: Principles & Applications",
             fabTooltip: "Translate to العربية", submitBtn: "Submit Answers",
-            footer: "Based on \"Principles of Risk Management and Insurance\" - Chapter 2",
+            footer: "Based on \"Risk Management and Insurance\" - Dr. Shaimaa Elgamal",
             resultCorrect: "Outstanding! You have mastered this section.",
             resultIncorrect: "Good effort. Review the explanations below and try again.",
             explainTitle: "Explanation"
         },
         ar: {
-            mainTitle: "التأمين والمخاطر", subTitle: "الفصل الثاني: المبادئ والتطبيقات",
+            mainTitle: "التأمين والمخاطر", subTitle: "الفصلين 2-3: المبادئ والتطبيقات",
             fabTooltip: "Translate to English", submitBtn: "إرسال الإجابات",
-            footer: "بناءً على مادة \"مبادئ إدارة المخاطر والتأمين\" - الفصل الثاني",
+            footer: "بناءً على مادة \"إدارة المخاطر والتأمين\" - د. شيماء الجمال",
             resultCorrect: "أداء ممتاز! لقد أتقنت هذا القسم.",
             resultIncorrect: "جهد جيد. راجع الشرح أدناه وحاول مرة أخرى.",
             explainTitle: "الشرح"
@@ -151,28 +414,28 @@
 
     const quizzes = [
         {
-            title: { en: "Quiz 1: Concepts, Pooling & Insurable Risks", ar: "الاختبار الأول: المفاهيم، التجميع والمخاطر القابلة للتأمين" },
+            title: { en: "Quiz 1: Concepts, Pooling & Insurable Risks", ar: "الاختبار الأول: المفاهيم، التجميع، والمخاطر القابلة للتأمين" },
             questions: [
                 { q: { en: "According to the Commission on Insurance Terminology, insurance is defined as:", ar: "وفقاً للجنة مصطلحات التأمين، يُعرّف التأمين بأنه:" }, options: [ { en: "A gambling mechanism to create risk.", ar: "آلية مقامرة لخلق المخاطر." }, { en: "A mechanism for pooling fortuitous losses and providing indemnification.", ar: "آلية لتجميع الخسائر العرضية وتوفير التعويض." }, { en: "A way to eliminate all risks from society.", ar: "طريقة للقضاء على جميع المخاطر من المجتمع." }, { en: "A government mandate to save money.", ar: "تفويض حكومي لتوفير المال." } ], answer: 1, explanation: { en: "Insurance is a mechanism for pooling fortuitous losses and providing indemnification to individuals who suffer losses.", ar: "التأمين هو آلية لتجميع الخسائر العرضية وتوفير التعويض للأفراد الذين يتكبدون خسائر." } },
                 { q: { en: "The Law of Large Numbers states that:", ar: "قانون الأعداد الكبيرة ينص على أن:" }, options: [ { en: "The greater the number of exposures, the more closely actual results approach expected results.", ar: "كلما زاد عدد وحدات التعرض، اقتربت النتائج الفعلية بشكل أكبر من النتائج المتوقعة." }, { en: "Insurance always results in a profit for the insurer.", ar: "التأمين يؤدي دائماً إلى ربح لشركة التأمين." }, { en: "Risks cannot be pooled if they are independent.", ar: "لا يمكن تجميع المخاطر إذا كانت مستقلة." }, { en: "Expected losses increase as the pool size grows.", ar: "الخسائر المتوقعة تزداد مع نمو حجم التجمع." } ], answer: 0, explanation: { en: "The Law of Large Numbers states that the greater the number of exposures, the more closely will the actual results approach the probable results expected.", ar: "قانون الأعداد الكبيرة ينص على أنه كلما زاد عدد وحدات التعرض، اقتربت النتائج الفعلية بشكل أكبر من النتائج المحتملة المتوقعة." } },
                 { q: { en: "When risks are pooled, what happens to the expected loss and the standard deviation?", ar: "عند تجميع المخاطر، ماذا يحدث للخسارة المتوقعة والانحراف المعياري؟" }, options: [ { en: "Both expected loss and standard deviation decrease.", ar: "كل من الخسارة المتوقعة والانحراف المعياري ينخفضان." }, { en: "Expected loss remains unchanged, but standard deviation declines.", ar: "الخسارة المتوقعة تبقى دون تغيير، لكن الانحراف المعياري ينخفض." }, { en: "Expected loss increases, and standard deviation decreases.", ar: "الخسارة المتوقعة تزداد، والانحراف المعياري ينخفض." }, { en: "Both expected loss and standard deviation increase.", ar: "كل من الخسارة المتوقعة والانحراف المعياري يزدادان." } ], answer: 1, explanation: { en: "As additional individuals are added to the pool, the standard deviation declines (risk is reduced), while the expected value of the loss remains unchanged.", ar: "مع إضافة أفراد إضافيين إلى التجمع، ينخفض الانحراف المعياري (تقل المخاطر)، بينما تظل القيمة المتوقعة للخسارة دون تغيير." } },
-                { q: { en: "The formula for the standard deviation of each owner's share in a pool of n identical independent risks is:", ar: "صيغة الانحراف المعياري لحصة كل مالك في تجمع من n مخاطر مستقلة ومتطابقة هي:" }, options: [ { en: "SD_individual * n", ar: "SD_individual * n" }, { en: "SD_individual / √n", ar: "SD_individual / √n" }, { en: "SD_individual * √n", ar: "SD_individual * √n" }, { en: "SD_individual / n", ar: "SD_individual / n" } ], answer: 1, explanation: { en: "For a pool of n identical independent risks, the standard deviation of each owner's share is SD_individual / √n.", ar: "لتجمع من n مخاطر مستقلة ومتطابقة، الانحراف المعياري لحصة كل مالك هو SD_individual / √n." } },
-                { q: { en: "If the expected loss is $5,000 and the standard deviation for one owner is $15,000, what is the standard deviation when the pool size is 100?", ar: "إذا كانت الخسارة المتوقعة 5000 دولار والانحراف المعياري لمالك واحد 15000 دولار، ما هو الانحراف المعياري عندما يكون حجم التجمع 100؟" }, options: [ { en: "$15,000", ar: "15000 دولار" }, { en: "$1,500", ar: "1500 دولار" }, { en: "$500", ar: "500 دولار" }, { en: "$150", ar: "150 دولار" } ], answer: 1, explanation: { en: "SD_pool = SD_individual / √n = 15,000 / √100 = 15,000 / 10 = $1,500.", ar: "SD_pool = SD_individual / √n = 15000 / √100 = 15000 / 10 = 1500 دولار." } },
                 { q: { en: "Which of the following is NOT a requirement of an ideally insurable risk?", ar: "أي مما يلي ليس شرطاً من شروط المخاطر القابلة للتأمين بشكل مثالي؟" }, options: [ { en: "Large number of exposure units.", ar: "عدد كبير من وحدات التعرض." }, { en: "Accidental and unintentional loss.", ar: "خسارة عرضية وغير مقصودة." }, { en: "Guaranteed profit for the insurer.", ar: "ربح مضمون لشركة التأمين." }, { en: "Economically feasible premium.", ar: "قسط اقتصادي ممكن." } ], answer: 2, explanation: { en: "The requirements include large number of exposures, accidental loss, determinable loss, no catastrophic loss, calculable chance, and feasible premium. Guaranteed profit is not a requirement.", ar: "المتطلبات تشمل عدد كبير من وحدات التعرض، خسارة عرضية، خسارة قابلة للتحديد، لا خسارة كارثية، فرصة خسارة قابلة للحساب، وقسط ممكن. الربح المضمون ليس شرطاً." } },
                 { q: { en: "The requirement that there must be a large number of exposure units is needed to:", ar: "الشرط الذي يجب أن يكون هناك عدد كبير من وحدات التعرض مطلوب لـ:" }, options: [ { en: "Ensure the insurer makes a profit.", ar: "ضمان ربح شركة التأمين." }, { en: "Enable the law of large numbers to operate and reduce risk.", ar: "تمكين قانون الأعداد الكبيرة من العمل وتقليل المخاطر." }, { en: "Prevent adverse selection.", ar: "منع الاختيار العكسي." }, { en: "Reduce the cost of doing business.", ar: "تقليل تكلفة ممارسة الأعمال." } ], answer: 1, explanation: { en: "A large number of exposure units enables the law of large numbers to operate, allowing the insurer to predict losses more accurately and reduce risk.", ar: "عدد كبير من وحدات التعرض يمكّن قانون الأعداد الكبيرة من العمل، مما يسمح لشركة التأمين بالتنبؤ بالخسائر بدقة أكبر وتقليل المخاطر." } },
-                { q: { en: "Why does private unemployment insurance generally fail to meet the requirements of an ideally insurable risk?", ar: "لماذا يفشل التأمين الخاص ضد البطالة بشكل عام في تلبية متطلبات المخاطر القابلة للتأمين بشكل مثالي؟" }, options: [ { en: "Because unemployment is always intentional.", ar: "لأن البطالة دائماً متعمدة." }, { en: "Because it violates the 'no catastrophic loss' requirement (losses are highly correlated).", ar: "لأنه ينتهك شرط 'لا خسارة كارثية' (الخسائر مترابطة بشدة)." }, { en: "Because there are too many exposure units.", ar: "لأن هناك عدد كبير جداً من وحدات التعرض." }, { en: "Because premiums are too low.", ar: "لأن الأقساط منخفضة جداً." } ], answer: 1, explanation: { en: "Unemployment is often correlated (many lose jobs at once during recessions), violating the 'no catastrophic loss' requirement.", ar: "البطالة غالباً ما تكون مترابطة (الكثيرون يفقدون وظائفهم في وقت واحد أثناء فترات الركود)، مما ينتهك شرط 'لا خسارة كارثية'." } },
                 { q: { en: "Adverse selection occurs when:", ar: "يحدث الاختيار العكسي عندما:" }, options: [ { en: "Insurers select only profitable clients.", ar: "شركات التأمين تختار فقط العملاء المربحين." }, { en: "Those most likely to suffer a loss are the ones most likely to seek insurance.", ar: "أولئك الأكثر عرضة لتكبد خسارة هم الأكثر احتمالاً لطلب التأمين." }, { en: "The government mandates insurance coverage.", ar: "الحكومة تفرض تغطية التأمين." }, { en: "Premiums are set too low for everyone.", ar: "يتم تحديد الأقساط منخفضة جداً للجميع." } ], answer: 1, explanation: { en: "Adverse selection means those most likely to suffer a loss are the ones most likely to seek insurance, leading to higher-than-expected losses.", ar: "الاختيار العكسي يعني أن أولئك الأكثر عرضة لتكبد خسارة هم الأكثر احتمالاً لطلب التأمين، مما يؤدي إلى خسائر أعلى من المتوقع." } },
                 { q: { en: "The 'adverse selection death spiral' refers to:", ar: "'دوامة الموت للاختيار العكسي' تشير إلى:" }, options: [ { en: "Insurers going bankrupt due to fraud.", ar: "إفلاس شركات التأمين بسبب الاحتيال." }, { en: "As premiums rise, low-risk people leave, making the pool riskier and premiums rise again.", ar: "مع ارتفاع الأقساط، يغادر الأشخاص منخفضو المخاطر، مما يجعل التجمع أكثر خطورة وترتفع الأقساط مرة أخرى." }, { en: "Government intervention in the insurance market.", ar: "تدخل الحكومة في سوق التأمين." }, { en: "A decrease in the number of insurers.", ar: "انخفاض في عدد شركات التأمين." } ], answer: 1, explanation: { en: "The death spiral occurs when premiums rise, low-risk people leave, the pool becomes riskier, and premiums must rise again, eventually collapsing the market.", ar: "تحدث دوامة الموت عندما ترتفع الأقساط، يغادر الأشخاص منخفضو المخاطر، يصبح التجمع أكثر خطورة، ويجب أن ترتفع الأقساط مرة أخرى، مما يؤدي في النهاية إلى انهيار السوق." } },
                 { q: { en: "Which method do insurers use to control adverse selection?", ar: "أي طريقة تستخدمها شركات التأمين للتحكم في الاختيار العكسي؟" }, options: [ { en: "Lowering premiums for everyone.", ar: "خفض الأقساط للجميع." }, { en: "Careful underwriting and risk classification.", ar: "الاكتتاب الدقيق وتصنيف المخاطر." }, { en: "Ignoring the risk profile of applicants.", ar: "تجاهل ملف المخاطر لمقدمي الطلبات." }, { en: "Increasing the number of claims paid.", ar: "زيادة عدد المطالبات المدفوعة." } ], answer: 1, explanation: { en: "Insurers control adverse selection through careful underwriting, risk classification, policy provisions (like waiting periods), and group coverage.", ar: "تتحكم شركات التأمين في الاختيار العكسي من خلال الاكتتاب الدقيق، وتصنيف المخاطر، وأحكام الوثيقة (مثل فترات الانتظار)، والتغطية الجماعية." } },
                 { q: { en: "A 'suicide clause' in a life insurance policy is an example of:", ar: "'شرط الانتحار' في وثيقة التأمين على الحياة هو مثال على:" }, options: [ { en: "A method to increase adverse selection.", ar: "طريقة لزيادة الاختيار العكسي." }, { en: "A policy provision used to control adverse selection and moral hazard.", ar: "حكم في الوثيقة يُستخدم للتحكم في الاختيار العكسي والخطر الأخلاقي." }, { en: "A social cost of insurance.", ar: "تكلفة اجتماعية للتأمين." }, { en: "A type of reinsurance.", ar: "نوع من إعادة التأمين." } ], answer: 1, explanation: { en: "Policy provisions like suicide clauses and waiting periods are used by insurers to control adverse selection and moral hazard.", ar: "أحكام الوثيقة مثل شروط الانتحار وفترات الانتظار تستخدمها شركات التأمين للتحكم في الاختيار العكسي والخطر الأخلاقي." } },
                 { q: { en: "Fire generally meets the requirements of an ideally insurable risk because:", ar: "الحريق يلبي بشكل عام متطلبات المخاطر القابلة للتأمين بشكل مثالي لأن:" }, options: [ { en: "It only affects a small number of people.", ar: "يؤثر فقط على عدد صغير من الأشخاص." }, { en: "It is accidental, measurable, calculable, and affects a large number of exposure units.", ar: "هو عرضي، قابل للقياس، قابل للحساب، ويؤثر على عدد كبير من وحدات التعرض." }, { en: "It is a catastrophic loss that affects everyone.", ar: "هو خسارة كارثية تؤثر على الجميع." }, { en: "It is intentional and planned.", ar: "هو متعمد ومخطط له." } ], answer: 1, explanation: { en: "Fire satisfies all requirements: large number of exposures, accidental, determinable, no catastrophic loss (managed by reinsurance), calculable, and feasible premium.", ar: "الحريق يلبي جميع المتطلبات: عدد كبير من وحدات التعرض، عرضي، قابل للتحديد، لا خسارة كارثية (يُدار بواسطة إعادة التأمين)، قابل للحساب، وقسط ممكن." } },
-                { q: { en: "An expected claim is defined as:", ar: "تُعرّف المطالبة المتوقعة (Expected claim) بأنها:" }, options: [ { en: "The maximum possible loss in a year.", ar: "أقصى خسارة ممكنة في السنة." }, { en: "The probability-weighted average amount an insurer expects to pay in claims.", ar: "المتوسط المرجح بالاحتمالات للمبلغ الذي تتوقع شركة التأمين دفعه كمطالبات." }, { en: "The total premium collected from all insureds.", ar: "إجمالي القسط المحصل من جميع المؤمن عليهم." }, { en: "The administrative expenses of the insurer.", ar: "المصروفات الإدارية لشركة التأمين." } ], answer: 1, explanation: { en: "An expected claim is the probability-weighted average amount an insurer expects to pay in claims over a given period.", ar: "المطالبة المتوقعة هي المتوسط المرجح بالاحتمالات للمبلغ الذي تتوقع شركة التأمين دفعه كمطالبات خلال فترة زمنية معينة." } },
-                { q: { en: "The formula for the break-even premium with expense loading (e) and profit loading (p) is:", ar: "صيغة القسط الذي يحقق التعادل مع تحميل النفقات (e) وتحميل الربح (p) هي:" }, options: [ { en: "P = Expected claims * (1 - e - p)", ar: "P = Expected claims * (1 - e - p)" }, { en: "P = Expected claims / (1 - e - p)", ar: "P = Expected claims / (1 - e - p)" }, { en: "P = Expected claims + e + p", ar: "P = Expected claims + e + p" }, { en: "P = Expected claims / (e * p)", ar: "P = Expected claims / (e * p)" } ], answer: 1, explanation: { en: "The break-even premium formula is P = Expected claims / (1 - e - p).", ar: "صيغة القسط الذي يحقق التعادل هي P = Expected claims / (1 - e - p)." } },
-                { q: { en: "A small town has 500 homes. Expected loss per home is $320. Expenses are 20% and profit is 5%. What is the premium?", ar: "بلدة بها 500 منزل. الخسارة المتوقعة لكل منزل 320 دولار. النفقات 20% والربح 5%. ما هو القسط؟" }, options: [ { en: "$320", ar: "320 دولار" }, { en: "$400", ar: "400 دولار" }, { en: "$426.67", ar: "426.67 دولار" }, { en: "$500", ar: "500 دولار" } ], answer: 2, explanation: { en: "P = 320 / (1 - 0.20 - 0.05) = 320 / 0.75 = $426.67.", ar: "P = 320 / (1 - 0.20 - 0.05) = 320 / 0.75 = 426.67 دولار." } },
+                { q: { en: "Why does private unemployment insurance generally fail to meet the requirements of an ideally insurable risk?", ar: "لماذا يفشل التأمين الخاص ضد البطالة بشكل عام في تلبية متطلبات المخاطر القابلة للتأمين بشكل مثالي؟" }, options: [ { en: "Because unemployment is always intentional.", ar: "لأن البطالة دائماً متعمدة." }, { en: "Because it violates the 'no catastrophic loss' requirement (losses are highly correlated) and chance of loss is hard to calculate.", ar: "لأنه ينتهك شرط 'لا خسارة كارثية' (الخسائر مترابطة بشدة) وفرصة الخسارة يصعب حسابها." }, { en: "Because there are too many exposure units.", ar: "لأن هناك عدد كبير جداً من وحدات التعرض." }, { en: "Because premiums are too low.", ar: "لأن الأقساط منخفضة جداً." } ], answer: 1, explanation: { en: "Unemployment is often correlated (many lose jobs at once), violating the 'no catastrophic loss' requirement. Also, some unemployment is voluntary and loss measurement is difficult.", ar: "البطالة غالباً ما تكون مترابطة (الكثيرون يفقدون وظائفهم في وقت واحد)، مما ينتهك شرط 'لا خسارة كارثية'. أيضاً، بعض البطالة طوعية وقياس الخسارة صعب." } },
+                { q: { en: "In the pooling example with two identical buildings, what happens to the expected loss per owner when they pool?", ar: "في مثال التجميع مع مبنيين متطابقين، ماذا يحدث للخسارة المتوقعة لكل مالك عند التجميع؟" }, options: [ { en: "It decreases to zero.", ar: "تنخفض إلى الصفر." }, { en: "It remains exactly the same as when they were independent.", ar: "تبقى بالضبط كما كانت عندما كانوا مستقلين." }, { en: "It doubles.", ar: "تتضاعف." }, { en: "It becomes unpredictable.", ar: "تصبح غير قابلة للتنبؤ." } ], answer: 1, explanation: { en: "Expected loss remains unchanged regardless of pool size. Only the standard deviation (risk) falls as the pool grows.", ar: "الخسارة المتوقعة تبقى دون تغيير بغض النظر عن حجم التجمع. فقط الانحراف المعياري (المخاطر) ينخفض مع نمو التجمع." } },
+                { q: { en: "The formula for the standard deviation of each owner's share in a pool of n identical independent risks is:", ar: "صيغة الانحراف المعياري لحصة كل مالك في تجمع من n مخاطر مستقلة ومتطابقة هي:" }, options: [ { en: "SD_individual * n", ar: "SD_individual * n" }, { en: "SD_individual / √n", ar: "SD_individual / √n" }, { en: "SD_individual * √n", ar: "SD_individual * √n" }, { en: "SD_individual / n", ar: "SD_individual / n" } ], answer: 1, explanation: { en: "For a pool of n identical independent risks, the standard deviation of each owner's share is SD_individual / √n.", ar: "لتجمع من n مخاطر مستقلة ومتطابقة، الانحراف المعياري لحصة كل مالك هو SD_individual / √n." } },
+                { q: { en: "If the expected loss is $5,000 and the standard deviation for one owner is $15,000, what is the standard deviation when the pool size is 100?", ar: "إذا كانت الخسارة المتوقعة 5000 دولار والانحراف المعياري لمالك واحد 15000 دولار، ما هو الانحراف المعياري عندما يكون حجم التجمع 100؟" }, options: [ { en: "$15,000", ar: "15000 دولار" }, { en: "$1,500", ar: "1500 دولار" }, { en: "$500", ar: "500 دولار" }, { en: "$150", ar: "150 دولار" } ], answer: 1, explanation: { en: "SD_pool = SD_individual / √n = 15,000 / √100 = 15,000 / 10 = $1,500.", ar: "SD_pool = SD_individual / √n = 15000 / √100 = 15000 / 10 = 1500 دولار." } },
+                { q: { en: "The requirement of 'no catastrophic loss' means:", ar: "شرط 'لا خسارة كارثية' يعني:" }, options: [ { en: "Losses must be extremely large.", ar: "يجب أن تكون الخسائر كبيرة جداً." }, { en: "The probability of a single event causing massive simultaneous losses to all insureds must be low.", ar: "يجب أن يكون احتمال حدوث حدث واحد يسبب خسائر هائلة متزامنة لجميع المؤمن عليهم منخفضاً." }, { en: "Insurance is not needed for natural disasters.", ar: "التأمين غير مطلوب للكوارث الطبيعية." }, { en: "Insurers should avoid all risks.", ar: "يجب على شركات التأمين تجنب جميع المخاطر." } ], answer: 1, explanation: { en: "No catastrophic loss means there should not be a high probability of a single event causing massive simultaneous losses to all insureds (e.g., war or severe inflation).", ar: "لا خسارة كارثية يعني أنه يجب ألا يكون هناك احتمال كبير لحدث واحد يسبب خسائر هائلة متزامنة لجميع المؤمن عليهم (مثل الحرب أو التضخم الحاد)." } },
+                { q: { en: "Which of the following is a characteristic of an ideally insurable risk?", ar: "أي مما يلي يعتبر خاصية من خصائص المخاطر القابلة للتأمين بشكل مثالي؟" }, options: [ { en: "The loss must be intentional.", ar: "يجب أن تكون الخسارة متعمدة." }, { en: "The loss must be accidental and unintentional.", ar: "يجب أن تكون الخسارة عرضية وغير مقصودة." }, { en: "The loss must be impossible to measure.", ar: "يجب أن تكون الخسارة مستحيلة القياس." }, { en: "The premium must be higher than the loss.", ar: "يجب أن يكون القسط أعلى من الخسارة." } ], answer: 1, explanation: { en: "One of the requirements is that the loss must be accidental and unintentional from the insured's viewpoint.", ar: "أحد المتطلبات هو أن الخسارة يجب أن تكون عرضية وغير مقصودة من وجهة نظر المؤمن عليه." } },
+                { q: { en: "Group coverage (like employer-sponsored health insurance) helps control adverse selection because:", ar: "التغطية الجماعية (مثل التأمين الصحي برعاية صاحب العمل) تساعد في التحكم في الاختيار العكسي لأن:" }, options: [ { en: "It allows individuals to opt-in only when they are sick.", ar: "يسمح للأفراد بالاشتراك فقط عندما يكونون مرضى." }, { en: "It automatically includes a large pool of people, mixing low and high risks.", ar: "يتضمن تلقائياً تجمعاً كبيراً من الأشخاص، مما يمزج بين المخاطر المنخفضة والعالية." }, { en: "It eliminates all risks.", ar: "يلغي جميع المخاطر." }, { en: "It requires medical exams for everyone.", ar: "يتطلب فحوصات طبية للجميع." } ], answer: 1, explanation: { en: "Group coverage automatically includes a large pool, mixing low and high risks, which prevents low-risk individuals from dropping out and causing adverse selection.", ar: "التغطية الجماعية تتضمن تلقائياً تجمعاً كبيراً، مما يمزج بين المخاطر المنخفضة والعالية، مما يمنع الأفراد منخفضي المخاطر من الانسحاب والتسبب في الاختيار العكسي." } },
+                { q: { en: "If an insurer charges a premium based on average risk, but only high-risk individuals buy the policy, this leads to:", ar: "إذا فرضت شركة تأمين قسطاً بناءً على متوسط المخاطر، ولكن فقط الأفراد عاليو المخاطر يشترون الوثيقة، فإن هذا يؤدي إلى:" }, options: [ { en: "Increased profitability for the insurer.", ar: "زيادة ربحية شركة التأمين." }, { en: "Adverse selection and potential financial losses for the insurer.", ar: "الاختيار العكسي وخسائر مالية محتملة لشركة التأمين." }, { en: "Lower premiums for everyone.", ar: "أقساط أقل للجميع." }, { en: "A perfectly balanced risk pool.", ar: "تجمع مخاطر متوازن تماماً." } ], answer: 1, explanation: { en: "If only high-risk individuals buy, the insurer faces higher-than-expected claims, leading to adverse selection and financial losses.", ar: "إذا اشترى فقط الأفراد عاليو المخاطر، تواجه شركة التأمين مطالبات أعلى من المتوقع، مما يؤدي إلى الاختيار العكسي والخسائر المالية." } },
                 { q: { en: "The 'calculable chance of loss' requirement means:", ar: "شرط 'فرصة خسارة قابلة للحساب' يعني:" }, options: [ { en: "The insurer must be able to estimate the probability of loss using past data.", ar: "يجب أن تكون شركة التأمين قادرة على تقدير احتمال الخسارة باستخدام البيانات السابقة." }, { en: "The loss must be completely unpredictable.", ar: "يجب أن تكون الخسارة غير قابلة للتنبؤ تماماً." }, { en: "The insured must calculate the premium.", ar: "يجب على المؤمن عليه حساب القسط." }, { en: "The government must guarantee the loss.", ar: "يجب على الحكومة ضمان الخسارة." } ], answer: 0, explanation: { en: "The chance of loss must be calculable, meaning the insurer can estimate the probability of loss and the expected cost based on historical data.", ar: "فرصة الخسارة يجب أن تكون قابلة للحساب، مما يعني أن شركة التأمين يمكنها تقدير احتمال الخسارة والتكلفة المتوقعة بناءً على البيانات التاريخية." } },
-                { q: { en: "An 'economically feasible premium' means:", ar: "'القسط الاقتصادي الممكن' يعني:" }, options: [ { en: "The premium must be so high that no one can afford it.", ar: "يجب أن يكون القسط مرتفعاً جداً بحيث لا يستطيع أحد تحمله." }, { en: "The premium must be affordable for the insured to pay.", ar: "يجب أن يكون القسط معقولاً بحيث يمكن للمؤمن عليه دفعه." }, { en: "The premium must be zero.", ar: "يجب أن يكون القسط صفراً." }, { en: "The premium must be paid by the government.", ar: "يجب أن تدفع الحكومة القسط." } ], answer: 1, explanation: { en: "The premium must be economically feasible, meaning it must be affordable for the insured to pay relative to the value of the exposure.", ar: "يجب أن يكون القسط ممكناً اقتصادياً، مما يعني أنه يجب أن يكون معقولاً بحيث يمكن للمؤمن عليه دفعه بالنسبة لقيمة التعرض." } },
-                { q: { en: "Group coverage helps control adverse selection because:", ar: "التغطية الجماعية تساعد في التحكم في الاختيار العكسي لأن:" }, options: [ { en: "It allows individuals to opt-in only when they are sick.", ar: "يسمح للأفراد بالاشتراك فقط عندما يكونون مرضى." }, { en: "It automatically includes a large pool of people, mixing low and high risks.", ar: "يتضمن تلقائياً تجمعاً كبيراً من الأشخاص، مما يمزج بين المخاطر المنخفضة والعالية." }, { en: "It eliminates all risks.", ar: "يلغي جميع المخاطر." }, { en: "It requires medical exams for everyone.", ar: "يتطلب فحوصات طبية للجميع." } ], answer: 1, explanation: { en: "Group coverage automatically includes a large pool, mixing low and high risks, which prevents low-risk individuals from dropping out and causing adverse selection.", ar: "التغطية الجماعية تتضمن تلقائياً تجمعاً كبيراً، مما يمزج بين المخاطر المنخفضة والعالية، مما يمنع الأفراد منخفضي المخاطر من الانسحاب والتسبب في الاختيار العكسي." } },
-                { q: { en: "If an insurer charges a premium based on average risk, but only high-risk individuals buy the policy, this leads to:", ar: "إذا فرضت شركة تأمين قسطاً بناءً على متوسط المخاطر، ولكن فقط الأفراد عاليو المخاطر يشترون الوثيقة، فإن هذا يؤدي إلى:" }, options: [ { en: "Increased profitability for the insurer.", ar: "زيادة ربحية شركة التأمين." }, { en: "Adverse selection and potential financial losses for the insurer.", ar: "الاختيار العكسي وخسائر مالية محتملة لشركة التأمين." }, { en: "Lower premiums for everyone.", ar: "أقساط أقل للجميع." }, { en: "A perfectly balanced risk pool.", ar: "تجمع مخاطر متوازن تماماً." } ], answer: 1, explanation: { en: "If only high-risk individuals buy, the insurer faces higher-than-expected claims, leading to adverse selection and financial losses.", ar: "إذا اشترى فقط الأفراد عاليو المخاطر، تواجه شركة التأمين مطالبات أعلى من المتوقع، مما يؤدي إلى الاختيار العكسي والخسائر المالية." } }
+                { q: { en: "An 'economically feasible premium' means:", ar: "'القسط الاقتصادي الممكن' يعني:" }, options: [ { en: "The premium must be so high that no one can afford it.", ar: "يجب أن يكون القسط مرتفعاً جداً بحيث لا يستطيع أحد تحمله." }, { en: "The premium must be affordable for the insured to pay.", ar: "يجب أن يكون القسط معقولاً بحيث يمكن للمؤمن عليه دفعه." }, { en: "The premium must be zero.", ar: "يجب أن يكون القسط صفراً." }, { en: "The premium must be paid by the government.", ar: "يجب أن تدفع الحكومة القسط." } ], answer: 1, explanation: { en: "The premium must be economically feasible, meaning it must be affordable for the insured to pay relative to the value of the exposure.", ar: "يجب أن يكون القسط ممكناً اقتصادياً، مما يعني أنه يجب أن يكون معقولاً بحيث يمكن للمؤمن عليه دفعه بالنسبة لقيمة التعرض." } }
             ]
         },
         {
@@ -180,24 +443,24 @@
             questions: [
                 { q: { en: "How does insurance differ from gambling?", ar: "كيف يختلف التأمين عن المقامرة؟" }, options: [ { en: "Insurance creates new risk, while gambling reduces it.", ar: "التأمين يخلق مخاطر جديدة، بينما المقامرة تقللها." }, { en: "Gambling creates a new speculative risk, while insurance reduces an existing pure risk.", ar: "المقامرة تخلق مخاطرة مضاربة جديدة، بينما التأمين يقلل من مخاطرة بحتة موجودة." }, { en: "Both create new risks.", ar: "كلاهما يخلق مخاطر جديدة." }, { en: "Insurance is illegal in most countries.", ar: "التأمين غير قانوني في معظم البلدان." } ], answer: 1, explanation: { en: "Gambling creates a new speculative risk where none existed before. Insurance, on the other hand, reduces an existing pure risk by transferring it.", ar: "المقامرة تخلق مخاطرة مضاربة جديدة حيث لم تكن موجودة من قبل. التأمين، من ناحية أخرى، يقلل من مخاطرة بحتة موجودة عن طريق نقلها." } },
                 { q: { en: "How does insurance differ from hedging?", ar: "كيف يختلف التأمين عن التحوط؟" }, options: [ { en: "Hedging transfers risk, while insurance eliminates it completely.", ar: "التحوط ينقل المخاطر، بينما التأمين يلغيها تماماً." }, { en: "Hedging can eliminate speculative risk, while insurance only transfers pure risk.", ar: "التحوط يمكن أن يلغي المخاطر المضاربة، بينما التأمين ينقل فقط المخاطر البحتة." }, { en: "Insurance is only for businesses, hedging is for individuals.", ar: "التأمين مخصص فقط للشركات، التحوط للأفراد." }, { en: "There is no difference.", ar: "لا يوجد فرق." } ], answer: 1, explanation: { en: "Hedging can eliminate speculative risk (like price fluctuations), while insurance only transfers pure risk (like fire or theft) to the insurer.", ar: "التحوط يمكن أن يلغي المخاطر المضاربة (مثل تقلبات الأسعار)، بينما التأمين ينقل فقط المخاطر البحتة (مثل الحريق أو السرقة) إلى شركة التأمين." } },
-                { q: { en: "A farmer expects 10,000 bushels of wheat. Futures price is $5.50. Spot at harvest is $4.00. What is the futures gain?", ar: "مزارع يتوقع 10,000 بوشل من القمح. سعر العقود الآجلة 5.50 دولار. السعر الفوري عند الحصاد 4.00 دولار. ما هو ربح العقود الآجلة؟" }, options: [ { en: "$40,000", ar: "40,000 دولار" }, { en: "$15,000", ar: "15,000 دولار" }, { en: "$55,000", ar: "55,000 دولار" }, { en: "$10,000", ar: "10,000 دولار" } ], answer: 1, explanation: { en: "Futures gain = (FP - SP) * N = (5.50 - 4.00) * 10,000 = $15,000.", ar: "ربح العقود الآجلة = (سعر الآجل - السعر الفوري) * الكمية = (5.50 - 4.00) * 10,000 = 15,000 دولار." } },
                 { q: { en: "Which of the following is a major type of private insurance company?", ar: "أي مما يلي يعتبر نوعاً رئيسياً من شركات التأمين الخاصة؟" }, options: [ { en: "Social Security Administration.", ar: "إدارة الضمان الاجتماعي." }, { en: "Stock insurance companies and Mutual insurance companies.", ar: "شركات التأمين المساهمة وشركات التأمين التعاوني." }, { en: "Federal Deposit Insurance Corporation (FDIC).", ar: "المؤسسة الفيدرالية للتأمين على الودائع." }, { en: "National Flood Insurance Program.", ar: "البرنامج الوطني للتأمين ضد الفيضانات." } ], answer: 1, explanation: { en: "Major types of private insurance companies include stock companies, mutual companies, and other forms like Lloyds associations.", ar: "تشمل الأنواع الرئيسية لشركات التأمين الخاصة الشركات المساهمة، والشركات التعاونية، وأشكال أخرى مثل جمعيات لويدز." } },
                 { q: { en: "Social insurance programs include all of the following EXCEPT:", ar: "برامج التأمين الاجتماعي تشمل جميع ما يلي ما عدا:" }, options: [ { en: "Social Security (Old-age, survivors, disability).", ar: "الضمان الاجتماعي (الشيخوخة، الناجين، العجز)." }, { en: "Medicare and Medicaid.", ar: "ميديكير وميديكيد." }, { en: "Workers' compensation.", ar: "تعويضات العمال." }, { en: "Private auto insurance.", ar: "التأمين الخاص على السيارات." } ], answer: 3, explanation: { en: "Social insurance programs are government-mandated (Social Security, Medicare, Workers' comp). Private auto insurance is a private insurance product.", ar: "برامج التأمين الاجتماعي مفوضة من الحكومة (الضمان الاجتماعي، ميديكير، تعويضات العمال). التأمين الخاص على السيارات هو منتج تأمين خاص." } },
                 { q: { en: "Which of the following is a social benefit of insurance?", ar: "أي مما يلي يعتبر فائدة اجتماعية للتأمين؟" }, options: [ { en: "Fraudulent claims.", ar: "المطالبات الاحتيالية." }, { en: "Indemnification for loss and reduction of worry.", ar: "التعويض عن الخسارة وتقليل القلق." }, { en: "Inflated claims.", ar: "المطالبات المبالغ فيها." }, { en: "Higher premiums reducing disposable income.", ar: "أقساط أعلى تقلل من الدخل المتاح." } ], answer: 1, explanation: { en: "Social benefits include indemnification, reduction of worry, source of investment funds, and loss prevention. Fraud and inflated claims are social costs.", ar: "تشمل الفوائد الاجتماعية التعويض، تقليل القلق، مصدر لصناديق الاستثمار، ومنع الخسارة. الاحتيال والمطالبات المبالغ فيها هي تكاليف اجتماعية." } },
+                { q: { en: "Insurance provides a source of investment funds because:", ar: "يوفر التأمين مصدراً لصناديق الاستثمار لأن:" }, options: [ { en: "Insurers collect premiums and invest them in securities before paying claims.", ar: "شركات التأمين تجمع الأقساط وتستثمرها في الأوراق المالية قبل دفع المطالبات." }, { en: "The government gives money to insurers.", ar: "الحكومة تعطي المال لشركات التأمين." }, { en: "Insured individuals invest their own money.", ar: "الأفراد المؤمن عليهم يستثمرون أموالهم الخاصة." }, { en: "Insurance does not provide investment funds.", ar: "التأمين لا يوفر صناديق استثمار." } ], answer: 0, explanation: { en: "Insurers collect premiums and, because claims are paid later, they can invest these funds in securities, providing a source of investment capital for the economy.", ar: "شركات التأمين تجمع الأقساط، ونظراً لأن المطالبات تُدفع لاحقاً، يمكنها استثمار هذه الأموال في الأوراق المالية، مما يوفر مصدراً لرأس المال الاستثماري للاقتصاد." } },
                 { q: { en: "Which of the following is considered a social cost of insurance?", ar: "أي مما يلي يعتبر تكلفة اجتماعية للتأمين؟" }, options: [ { en: "Indemnification for loss.", ar: "التعويض عن الخسارة." }, { en: "Loss prevention and reduction of worry.", ar: "منع الخسارة وتقليل القلق." }, { en: "Operating expenses and fraudulent claims.", ar: "مصروفات التشغيل والمطالبات الاحتيالية." }, { en: "Enhancement of credit.", ar: "تعزيز الائتمان." } ], answer: 2, explanation: { en: "Social costs include the cost of doing business (operating expenses), fraudulent and inflated claims, and higher premiums that reduce disposable income.", ar: "تشمل التكاليف الاجتماعية تكلفة ممارسة الأعمال (مصروفات التشغيل)، والمطالبات الاحتيالية والمبالغ فيها، والأقساط الأعلى التي تقلل من الدخل المتاح." } },
                 { q: { en: "If an insurer expects total claims of $480,000 and its expense loading is 20% of premium, what is the break-even premium?", ar: "إذا كانت شركة التأمين تتوقع إجمالي مطالبات بقيمة 480,000 دولار ونفقات التحميل هي 20% من القسط، ما هو القسط الذي يحقق التعادل؟" }, options: [ { en: "$480,000", ar: "480,000 دولار" }, { en: "$576,000", ar: "576,000 دولار" }, { en: "$600,000", ar: "600,000 دولار" }, { en: "$96,000", ar: "96,000 دولار" } ], answer: 2, explanation: { en: "P = Expected claims / (1 - e) = 480,000 / (1 - 0.20) = 480,000 / 0.80 = $600,000.", ar: "P = المطالبات المتوقعة / (1 - e) = 480000 / (1 - 0.20) = 480000 / 0.80 = 600,000 دولار." } },
                 { q: { en: "Expected claims are $2,000,000. The insurer uses an expense loading of 18% and a profit loading of 7%. What is the break-even premium?", ar: "المطالبات المتوقعة هي 2,000,000 دولار. تستخدم شركة التأمين تحميل نفقات بنسبة 18% وتحميل ربح بنسبة 7%. ما هو القسط الذي يحقق التعادل؟" }, options: [ { en: "$2,000,000", ar: "2,000,000 دولار" }, { en: "$2,500,000", ar: "2,500,000 دولار" }, { en: "$2,666,667", ar: "2,666,667 دولار" }, { en: "$3,000,000", ar: "3,000,000 دولار" } ], answer: 2, explanation: { en: "P = Expected claims / (1 - e - p) = 2,000,000 / (1 - 0.18 - 0.07) = 2,000,000 / 0.75 = $2,666,666.67.", ar: "P = المطالبات المتوقعة / (1 - e - p) = 2000000 / (1 - 0.18 - 0.07) = 2000000 / 0.75 = 2,666,666.67 دولار." } },
                 { q: { en: "An insurer has incurred losses of $1,050,000 and earned premiums of $1,500,000. What is the loss ratio?", ar: "شركة التأمين تكبدت خسائر بقيمة 1,050,000 دولار وأقساط مكتسبة بقيمة 1,500,000 دولار. ما هو نسبة الخسارة؟" }, options: [ { en: "0.50", ar: "0.50" }, { en: "0.70", ar: "0.70" }, { en: "1.43", ar: "1.43" }, { en: "0.90", ar: "0.90" } ], answer: 1, explanation: { en: "Loss ratio = Incurred losses / Earned premiums = 1,050,000 / 1,500,000 = 0.70 or 70%.", ar: "نسبة الخسارة = الخسائر المتكبدة / الأقساط المكتسبة = 1050000 / 1500000 = 0.70 أو 70%." } },
                 { q: { en: "If the expense loading is 20% and the profit loading is 8%, what is the expected loss ratio?", ar: "إذا كان تحميل النفقات 20% وتحميل الربح 8%، ما هي نسبة الخسارة المتوقعة؟" }, options: [ { en: "0.28", ar: "0.28" }, { en: "0.72", ar: "0.72" }, { en: "0.80", ar: "0.80" }, { en: "1.28", ar: "1.28" } ], answer: 1, explanation: { en: "Expected loss ratio = 1 - e - p = 1 - 0.20 - 0.08 = 0.72 or 72%.", ar: "نسبة الخسارة المتوقعة = 1 - e - p = 1 - 0.20 - 0.08 = 0.72 أو 72%." } },
                 { q: { en: "If the actual loss ratio is 70% and the expected loss ratio is 72%, is the actual loss ratio favorable or unfavorable?", ar: "إذا كانت نسبة الخسارة الفعلية 70% ونسبة الخسارة المتوقعة 72%، فهل نسبة الخسارة الفعلية مواتية أم غير مواتية؟" }, options: [ { en: "Unfavorable, because losses are higher than expected.", ar: "غير مواتية، لأن الخسائر أعلى من المتوقع." }, { en: "Favorable, because losses are lower than what the premium was designed to cover.", ar: "مواتية، لأن الخسائر أقل مما صُمم القسط لتغطيته." }, { en: "Neutral, because they are exactly equal.", ar: "محايدة، لأنهما متساويتان تماماً." }, { en: "Unfavorable, because the insurer made no profit.", ar: "غير مواتية، لأن شركة التأمين لم تحقق أي ربح." } ], answer: 1, explanation: { en: "An actual loss ratio lower than the expected loss ratio is favorable because it means losses are lower than what the premium was designed to cover, leading to higher profit.", ar: "نسبة الخسارة الفعلية الأقل من نسبة الخسارة المتوقعة تعتبر مواتية لأنها تعني أن الخسائر أقل مما صُمم القسط لتغطيته، مما يؤدي إلى ربح أعلى." } },
+                { q: { en: "A town has 1,000 insured homes. Expected claims are $500,000. Expense loading is 20%. What is the initial break-even premium per home?", ar: "بلدة بها 1000 منزل مؤمن. المطالبات المتوقعة هي 500,000 دولار. تحميل النفقات 20%. ما هو القسط الأولي الذي يحقق التعادل لكل منزل؟" }, options: [ { en: "$500", ar: "500 دولار" }, { en: "$600", ar: "600 دولار" }, { en: "$625", ar: "625 دولار" }, { en: "$1,000", ar: "1000 دولار" } ], answer: 2, explanation: { en: "Total P = 500,000 / (1 - 0.20) = 625,000. Per home = 625,000 / 1,000 = $625.", ar: "إجمالي P = 500000 / (1 - 0.20) = 625000. لكل منزل = 625000 / 1000 = 625 دولار." } },
+                { q: { en: "In the previous question, if actual claims rise by 10% to $550,000 due to moral hazard, what is the new premium per home?", ar: "في السؤال السابق، إذا زادت المطالبات الفعلية بنسبة 10% إلى 550,000 دولار بسبب الخطر الأخلاقي، ما هو القسط الجديد لكل منزل؟" }, options: [ { en: "$625", ar: "625 دولار" }, { en: "$687.50", ar: "687.50 دولار" }, { en: "$550", ar: "550 دولار" }, { en: "$700", ar: "700 دولار" } ], answer: 1, explanation: { en: "New Total P = 550,000 / 0.80 = 687,500. Per home = 687,500 / 1,000 = $687.50.", ar: "إجمالي P الجديد = 550000 / 0.80 = 687500. لكل منزل = 687500 / 1000 = 687.50 دولار." } },
+                { q: { en: "An Expected claim per policy is $300. Expense loading is 22% and profit loading is 6%. What is the premium per policy?", ar: "المطالبة المتوقعة لكل وثيقة هي 300 دولار. تحميل النفقات 22% وتحميل الربح 6%. ما هو القسط لكل وثيقة؟" }, options: [ { en: "$300", ar: "300 دولار" }, { en: "$375", ar: "375 دولار" }, { en: "$416.67", ar: "416.67 دولار" }, { en: "$500", ar: "500 دولار" } ], answer: 2, explanation: { en: "P = 300 / (1 - 0.22 - 0.06) = 300 / 0.72 = $416.67.", ar: "P = 300 / (1 - 0.22 - 0.06) = 300 / 0.72 = 416.67 دولار." } },
                 { q: { en: "Earned premiums are $2,400,000 and incurred losses are $1,800,000. If e=20% and p=5%, is the insurer meeting its target?", ar: "الأقساط المكتسبة 2,400,000 دولار والخسائر المتكبدة 1,800,000 دولار. إذا كانت e=20% و p=5%، هل شركة التأمين تحقق هدفها؟" }, options: [ { en: "No, because the loss ratio is 75% and expected is 80%.", ar: "لا، لأن نسبة الخسارة 75% والمتوقع 80%." }, { en: "Yes, the actual loss ratio equals the expected loss ratio of 75%.", ar: "نعم، نسبة الخسارة الفعلية تساوي نسبة الخسارة المتوقعة البالغة 75%." }, { en: "No, because the insurer is underwriting at a loss.", ar: "لا، لأن شركة التأمين تكتب تأميناً بخسارة." }, { en: "Yes, because the loss ratio is 80%.", ar: "نعم، لأن نسبة الخسارة 80%." } ], answer: 1, explanation: { en: "Actual loss ratio = 1,800,000 / 2,400,000 = 75%. Expected = 1 - 0.20 - 0.05 = 75%. They are exactly equal, so the insurer is at its break-even target.", ar: "نسبة الخسارة الفعلية = 1800000 / 2400000 = 75%. المتوقعة = 1 - 0.20 - 0.05 = 75%. هما متساويتان تماماً، لذا شركة التأمين عند هدف التعادل." } },
                 { q: { en: "Workers' compensation premium is calculated as: Payroll / 100 * Rate. If Payroll is $2,000,000 and Rate is $0.50, what is the premium?", ar: "يُحسب قسط تعويضات العمال على النحو التالي: كشوف المرتبات / 100 * المعدل. إذا كانت كشوف المرتبات 2,000,000 دولار والمعدل 0.50 دولار، ما هو القسط؟" }, options: [ { en: "$1,000", ar: "1000 دولار" }, { en: "$5,000", ar: "5000 دولار" }, { en: "$10,000", ar: "10000 دولار" }, { en: "$20,000", ar: "20000 دولار" } ], answer: 2, explanation: { en: "Premium = (2,000,000 / 100) * 0.50 = 20,000 * 0.50 = $10,000.", ar: "القسط = (2000000 / 100) * 0.50 = 20000 * 0.50 = 10000 دولار." } },
                 { q: { en: "Social Security payroll tax: Employee earns $60,000. Social security rate is 6.2% and Medicare rate is 1.45%. What is the total tax?", ar: "ضريبة رواتب الضمان الاجتماعي: الموظف يكسب 60,000 دولار. معدل الضمان الاجتماعي 6.2% ومعدل ميديكير 1.45%. ما هي الضريبة الإجمالية؟" }, options: [ { en: "$3,720", ar: "3720 دولار" }, { en: "$870", ar: "870 دولار" }, { en: "$4,590", ar: "4590 دولار" }, { en: "$6,000", ar: "6000 دولار" } ], answer: 2, explanation: { en: "Social Security = 60,000 * 6.2% = 3,720. Medicare = 60,000 * 1.45% = 870. Total = 3,720 + 870 = $4,590.", ar: "الضمان الاجتماعي = 60000 * 6.2% = 3720. ميديكير = 60000 * 1.45% = 870. الإجمالي = 3720 + 870 = 4590 دولار." } },
                 { q: { en: "An insurer charges a premium of $900. Expected claims are $600. Expense loading is 15% and profit loading is 5%. What is the expected profit?", ar: "شركة التأمين تفرض قسطاً بقيمة 900 دولار. المطالبات المتوقعة 600 دولار. تحميل النفقات 15% وتحميل الربح 5%. ما هو الربح المتوقع؟" }, options: [ { en: "$135", ar: "135 دولار" }, { en: "$165", ar: "165 دولار" }, { en: "$300", ar: "300 دولار" }, { en: "$0", ar: "0 دولار" } ], answer: 1, explanation: { en: "Expected profit = Premium - Expected claims - (Expense loading * Premium) = 900 - 600 - (0.15 * 900) = 300 - 135 = $165.", ar: "الربح المتوقع = القسط - المطالبات المتوقعة - (تحميل النفقات * القسط) = 900 - 600 - (0.15 * 900) = 300 - 135 = 165 دولار." } },
-                { q: { en: "A home is worth $200,000. The chance of fire is 0.5%. What is the expected loss?", ar: "منزل قيمته 200,000 دولار. احتمال الحريق 0.5%. ما هي الخسارة المتوقعة؟" }, options: [ { en: "$200", ar: "200 دولار" }, { en: "$1,000", ar: "1000 دولار" }, { en: "$1,200", ar: "1200 دولار" }, { en: "$10,000", ar: "10000 دولار" } ], answer: 1, explanation: { en: "Expected loss = Probability * Loss = 0.5% * 200,000 = 0.005 * 200,000 = $1,000.", ar: "الخسارة المتوقعة = الاحتمال * الخسارة = 0.5% * 200000 = 0.005 * 200000 = 1000 دولار." } },
-                { q: { en: "In a town with 1,000 homes, expected claims are $500,000. Due to moral hazard, actual claims rise by 10% to $550,000. If expense loading is 20%, what is the new break-even premium per home?", ar: "في بلدة بها 1000 منزل، المطالبات المتوقعة 500,000 دولار. بسبب الخطر الأخلاقي، ترتفع المطالبات الفعلية بنسبة 10% إلى 550,000 دولار. إذا كان تحميل النفقات 20%، ما هو القسط الجديد الذي يحقق التعادل لكل منزل؟" }, options: [ { en: "$625", ar: "625 دولار" }, { en: "$687.50", ar: "687.50 دولار" }, { en: "$550", ar: "550 دولار" }, { en: "$700", ar: "700 دولار" } ], answer: 1, explanation: { en: "New Total P = 550,000 / (1 - 0.20) = 687,500. Per home = 687,500 / 1,000 = $687.50.", ar: "إجمالي P الجديد = 550000 / (1 - 0.20) = 687500. لكل منزل = 687500 / 1000 = 687.50 دولار." } },
-                { q: { en: "An Expected claim per policy is $300. Expense loading is 22% and profit loading is 6%. What is the premium per policy?", ar: "المطالبة المتوقعة لكل وثيقة هي 300 دولار. تحميل النفقات 22% وتحميل الربح 6%. ما هو القسط لكل وثيقة؟" }, options: [ { en: "$300", ar: "300 دولار" }, { en: "$375", ar: "375 دولار" }, { en: "$416.67", ar: "416.67 دولار" }, { en: "$500", ar: "500 دولار" } ], answer: 2, explanation: { en: "P = 300 / (1 - 0.22 - 0.06) = 300 / 0.72 = $416.67.", ar: "P = 300 / (1 - 0.22 - 0.06) = 300 / 0.72 = 416.67 دولار." } },
-                { q: { en: "Insurance provides a source of investment funds because:", ar: "يوفر التأمين مصدراً لصناديق الاستثمار لأن:" }, options: [ { en: "Insurers collect premiums and invest them in securities before paying claims.", ar: "شركات التأمين تجمع الأقساط وتستثمرها في الأوراق المالية قبل دفع المطالبات." }, { en: "The government gives money to insurers.", ar: "الحكومة تعطي المال لشركات التأمين." }, { en: "Insured individuals invest their own money.", ar: "الأفراد المؤمن عليهم يستثمرون أموالهم الخاصة." }, { en: "Insurance does not provide investment funds.", ar: "التأمين لا يوفر صناديق استثمار." } ], answer: 0, explanation: { en: "Insurers collect premiums and, because claims are paid later, they can invest these funds in securities, providing a source of investment capital for the economy.", ar: "شركات التأمين تجمع الأقساط، ونظراً لأن المطالبات تُدفع لاحقاً، يمكنها استثمار هذه الأموال في الأوراق المالية، مما يوفر مصدراً لرأس المال الاستثماري للاقتصاد." } }
+                { q: { en: "A home is worth $200,000. The chance of fire is 0.5%. What is the expected loss?", ar: "منزل قيمته 200,000 دولار. احتمال الحريق 0.5%. ما هي الخسارة المتوقعة؟" }, options: [ { en: "$200", ar: "200 دولار" }, { en: "$1,000", ar: "1000 دولار" }, { en: "$1,200", ar: "1200 دولار" }, { en: "$10,000", ar: "10000 دولار" } ], answer: 1, explanation: { en: "Expected loss = Probability * Loss = 0.5% * 200,000 = 0.005 * 200,000 = $1,000.", ar: "الخسارة المتوقعة = الاحتمال * الخسارة = 0.5% * 200000 = 0.005 * 200000 = 1000 دولار." } }
             ]
         }
     ];
@@ -228,6 +491,7 @@
         document.querySelectorAll('.tab-btn').forEach((btn, i) => {
             btn.classList.toggle('active', i === index);
         });
+        document.getElementById('result-box').style.display = 'none';
         renderQuiz();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -246,7 +510,7 @@
             let optionsHTML = '';
             q.options.forEach((opt, oIndex) => {
                 optionsHTML += `
-                    <label class="option-card" id="label-${currentQuizIndex}-${qIndex}-${oIndex}" onclick="selectOption(this, ${qIndex}, ${oIndex})">
+                    <label class="option-card" id="label-${currentQuizIndex}-${qIndex}-${oIndex}" onclick="selectOption(this)">
                         <input type="radio" name="q${currentQuizIndex}_${qIndex}" value="${oIndex}">
                         <div class="custom-radio"></div>
                         <span class="option-text">${opt[currentLang]}</span>
@@ -269,85 +533,67 @@
                 </div>
             `;
             form.appendChild(block);
-
-            // Restore Answer State
-            const savedAns = userAnswers[`q${currentQuizIndex}_${qIndex}`];
-            if (savedAns !== undefined) {
-                const label = document.getElementById(`label-${currentQuizIndex}-${qIndex}-${savedAns}`);
-                if(label) {
-                    label.classList.add('selected');
-                    label.querySelector('input').checked = true;
-                }
-            }
-
-            // Restore Submission State
-            if (submittedQuizzes[currentQuizIndex]) {
-                document.getElementById(`label-${currentQuizIndex}-${qIndex}-${q.answer}`).classList.add('correct');
-                if (savedAns !== undefined && savedAns !== q.answer) {
-                    document.getElementById(`label-${currentQuizIndex}-${qIndex}-${savedAns}`).classList.add('incorrect');
-                }
-                document.getElementById(`exp-${currentQuizIndex}-${qIndex}`).classList.add('show');
-            }
         });
-
-        // Restore Result Box State
-        const resultBox = document.getElementById('result-box');
-        if (submittedQuizzes[currentQuizIndex]) {
-            let score = 0;
+    
+            /* EBRA — استرجاع المحفوظ بعد تبديل اللغة/التبويب */
             quiz.questions.forEach((q, qIndex) => {
-                if (userAnswers[`q${currentQuizIndex}_${qIndex}`] === q.answer) score++;
+                const key = currentQuizIndex + '-' + qIndex;
+                if (!(key in answers)) return;
+                const oIndex = answers[key];
+                const lbl = document.getElementById(`label-${currentQuizIndex}-${qIndex}-${oIndex}`);
+                const inp = lbl && lbl.querySelector('input');
+                if (inp) { inp.checked = true; lbl.classList.add('selected'); }
             });
-            const total = quiz.questions.length;
-            document.getElementById('score-display').innerText = `${score} / ${total}`;
-            if (score >= total * 0.8) {
-                resultBox.className = 'result-box correct';
-                document.getElementById('result-msg').innerText = translations[currentLang].resultCorrect;
-            } else {
-                resultBox.className = 'result-box incorrect';
-                document.getElementById('result-msg').innerText = translations[currentLang].resultIncorrect;
-            }
-            resultBox.style.display = 'block';
-        } else {
-            resultBox.style.display = 'none';
-        }
-    }
+            if (graded[currentQuizIndex]) regrade();
+}
 
-    function selectOption(element, qIndex, oIndex) {
+    function selectOption(element) {
         const parent = element.parentElement;
         parent.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
         element.classList.add('selected');
         element.querySelector('input').checked = true;
-        userAnswers[`q${currentQuizIndex}_${qIndex}`] = oIndex;
+
+        const parts = element.id.split('-');   /* label-Q-Qi-O */
+        answers[parts[1] + '-' + parts[2]] = parseInt(parts[3], 10);
     }
 
     function submitQuiz() {
+        graded[currentQuizIndex] = true;
+        gradeAndDisplay(true, true);
+    }
+
+    function regrade() {
+        gradeAndDisplay(false, false);
+    }
+
+    function gradeAndDisplay(track, scroll) {
         const quiz = quizzes[currentQuizIndex];
         let score = 0;
         const total = quiz.questions.length;
 
         quiz.questions.forEach((q, qIndex) => {
-            const savedAns = userAnswers[`q${currentQuizIndex}_${qIndex}`];
+            const selected = document.querySelector(`input[name="q${currentQuizIndex}_${qIndex}"]:checked`);
             
             q.options.forEach((_, oIndex) => {
                 const label = document.getElementById(`label-${currentQuizIndex}-${qIndex}-${oIndex}`);
-                label.classList.remove('correct', 'incorrect');
-            });
+                label.classList.remove('correct', 'incorrect', 'selected');
+
+    });
 
             document.getElementById(`label-${currentQuizIndex}-${qIndex}-${q.answer}`).classList.add('correct');
 
-            if (savedAns !== undefined) {
-                if (savedAns === q.answer) {
+            if (selected) {
+                const val = parseInt(selected.value);
+                if (val === q.answer) {
                     score++;
                 } else {
-                    document.getElementById(`label-${currentQuizIndex}-${qIndex}-${savedAns}`).classList.add('incorrect');
+                    document.getElementById(`label-${currentQuizIndex}-${qIndex}-${val}`).classList.add('incorrect');
                 }
             }
 
-            const expBox = document.getElementById(`exp-${currentQuizIndex}_${qIndex}`);
-            setTimeout(() => expBox.classList.add('show'), 100 + (qIndex * 50));
+            const expBox = document.getElementById(`exp-${currentQuizIndex}-${qIndex}`);
+            setTimeout(() => expBox.classList.add('show'), 100 + (qIndex * 100));
         });
-
-        submittedQuizzes[currentQuizIndex] = true;
 
         const resultBox = document.getElementById('result-box');
         const scoreDisplay = document.getElementById('score-display');
@@ -355,6 +601,10 @@
 
         resultBox.style.display = 'block';
         scoreDisplay.innerText = `${score} / ${total}`;
+        /* 🎯 EBRA — إرسال عند تسليم المستخدم فقط */
+        if (track && window.EBRA && window.EBRA.trackScore) {
+            window.EBRA.trackScore(score, total, "Risk & Insurance — Ch2-3 Quiz " + (currentQuizIndex + 1));
+        }
         
         if (score >= total * 0.8) {
             resultBox.className = 'result-box correct';
@@ -364,10 +614,148 @@
             resultMsg.innerText = translations[currentLang].resultIncorrect;
         }
         
-        resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (scroll) resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     renderQuiz();
 </script>
+
+<!-- 🎯 جزء تتبع الدرجات (نائم في غير الكويزات) -->
+<script>
+(function () {
+  var TRACK_URL = "https://script.google.com/macros/s/AKfycbzWhqHm8sl_fogZTB_E_WEgBwJjke3qZ574Yj8f8gI9_KYUelzA4-EI2azlvFE96YlC/exec";
+  var MAX_SCORE = 10;   // ← العظمى الافتراضية عندما لا تذكر النتيجةُ علتها
+  var QUIZZES = [
+    // { selector: "#q1-result", label: "Ch1 Quiz 1" },
+    // { selector: "#q2-result", label: "Ch1 Quiz 2" },
+  ];
+
+  var vid;
+  try {
+    var pm = location.search.match(/[?&]ebra_vid=([^&]+)/);
+    if (pm) {
+      vid = decodeURIComponent(pm[1]);
+      localStorage.setItem("ebra_vid", vid);
+    } else {
+      vid = localStorage.getItem("ebra_vid");
+      if (!vid) {
+        vid = "v-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 9);
+        localStorage.setItem("ebra_vid", vid);
+      }
+    }
+  } catch (e) { vid = "v-na"; }
+
+  function post(score, max, label) {
+    fetch(TRACK_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        type: "score",
+        visitorId: vid,
+        quiz: label || "Quiz",
+        score: score,
+        max: max,
+        percent: Math.round((score / max) * 100),
+        page: location.origin + location.pathname
+      })
+    }).catch(function () {});
+  }
+
+  function parseScore(txt) {
+    txt = txt || "";
+    var m = txt.match(/(\d+(?:[.,]\d+)?)\s*(?:\/|من|out of|-)\s*(\d+)/) || txt.match(/(\d+(?:[.,]\d+)?)/);
+    if (!m) return null;
+    return {
+      score: parseFloat(m[1].replace(",", ".")),
+      max: m[2] ? parseFloat(m[2]) : null
+    };
+  }
+
+  /* 3) اليدوي */
+  var lastManual = {};
+  window.EBRA = window.EBRA || {};
+  window.EBRA.trackScore = function (score, max, label) {
+    var k = label + "|" + score + "/" + max;
+    var now = Date.now();
+    if (lastManual[k] && now - lastManual[k] < 3000) return;
+    lastManual[k] = now;
+    post(Number(score), Number(max) || MAX_SCORE, label);
+  };
+
+  /* 1) + 2) المسح التلقائي */
+  var lastSel = {};
+  function scan() {
+    for (var i = 0; i < QUIZZES.length; i++) {
+      var qz = QUIZZES[i];
+      var el = document.querySelector(qz.selector);
+      if (!el) continue;
+      var p = parseScore(el.textContent);
+      if (!p) continue;
+      if (lastSel[qz.selector] === p.score) continue;   // إعادة المحاولة بنفس الدرجة لا تُكرر
+      lastSel[qz.selector] = p.score;
+      post(p.score, p.max || MAX_SCORE, qz.label);
+    }
+    var els = document.querySelectorAll("[data-ebra-quiz]");
+    for (var j = 0; j < els.length; j++) {
+      var el2 = els[j];
+      if (el2.getAttribute("data-ebra-done")) continue;
+      var p2 = parseScore(el2.textContent);
+      if (!p2) continue;
+      el2.setAttribute("data-ebra-done", "1");
+      post(p2.score, p2.max || MAX_SCORE, el2.getAttribute("data-ebra-quiz"));
+    }
+  }
+
+  var timer = null;
+  function queueScan() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(scan, 400);
+  }
+  try {
+    var mo = new MutationObserver(queueScan);
+    mo.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+  } catch (e) {
+    setInterval(queueScan, 1500);
+  }
+  document.addEventListener("DOMContentLoaded", queueScan);
+  window.addEventListener("load", queueScan);
+})();
+</script>
+
+<!-- 📡 جزء تتبع الزيارات -->
+<script>
+(function () {
+  var TRACK_URL = "https://script.google.com/macros/s/AKfycbzWhqHm8sl_fogZTB_E_WEgBwJjke3qZ574Yj8f8gI9_KYUelzA4-EI2azlvFE96YlC/exec";
+  var vid;
+  try {
+    var pm = location.search.match(/[?&]ebra_vid=([^&]+)/);
+    if (pm) {
+      vid = decodeURIComponent(pm[1]);
+      localStorage.setItem("ebra_vid", vid);
+    } else {
+      vid = localStorage.getItem("ebra_vid");
+      if (!vid) {
+        vid = "v-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 9);
+        localStorage.setItem("ebra_vid", vid);
+      }
+    }
+  } catch (e) { vid = "v-na"; }
+  fetch(TRACK_URL, {
+    method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({
+      visitorId: vid,
+      page: location.origin + location.pathname,
+      referrer: document.referrer || "Direct",
+      language: navigator.language || "",
+      screen: window.screen ? (screen.width + "x" + screen.height) : "",
+      ua: navigator.userAgent
+    })
+  }).catch(function () {});
+})();
+</script>
+
 </body>
 </html>
